@@ -17,7 +17,7 @@ Windows Server からURLでアンケートシステムに接続
 ↓
 Webサーバが応答
 ```
-![画像]()
+![画像](https://github.com/okimindan/questionnaire/blob/main/questionnaire.drawio.png)
 ## 4. Scope（スコープ）
 
 ### 4.1 Scope（対象）
