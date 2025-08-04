@@ -4,6 +4,15 @@
   ```
   http://okimiokimi.zapto.org/
   ```
+- ファイル情報
+  ```
+  /var/www/okimi/
+  ├─ index.html
+  ├─ css/
+  │   └─ style.css
+  └─ js/
+      └─ app.js  
+  ```
 
 ## 1. Overview
 EC2でアンケートシステムを作成し、その結果を保存し分析
