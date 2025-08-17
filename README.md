@@ -2,7 +2,7 @@
 
 - アドレス
   ```
-  http://okimiokimi.zapto.org/
+  http://test.okimi-public.xyz/
   ```
 - ファイル情報
   ```
