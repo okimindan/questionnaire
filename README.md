@@ -6,12 +6,13 @@
   ```
 - ファイル情報
   ```
-  /var/www/okimi/
-  ├─ index.html
-  ├─ css/
-  │   └─ style.css
-  └─ js/
-      └─ app.js  
+  okimi/
+  ├─ public/
+  │  ├─ index.html     ← 既存（そのまま / 1行だけ追記）
+  │  ├─ js/app.js      ← 既存（fetchでAPIにPOSTするよう差し替え）
+  │  └─ css/style.css  ← 既存
+  ├─ server.js         ← 追加（APIサーバ）
+  └─ .env              ← 追加（DB接続情報：別サーバ）
   ```
 
 ## 1. Overview
