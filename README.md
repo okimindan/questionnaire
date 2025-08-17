@@ -53,6 +53,8 @@ Webサーバが応答
 - Lambda は失敗時 CloudWatch Logs にエラーログを出力する
 - IAM ポリシーはadministrator権限
 
+- databases→`profile_app `
+
 ## 7. Services Used （使用サービス）
 
 - Amazon EC2
@@ -73,5 +75,7 @@ Webサーバが応答
 ## 9. Future Enhancements (Optional)(将来的な拡張（参考）)
 
 - CloudFormationを利用したEC2作成（タグ Role=monitoring-target）
+
+
 
 
