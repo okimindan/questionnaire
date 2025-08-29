@@ -33,6 +33,7 @@ const pool = mysql.createPool({
   // ssl: { ca: require('fs').readFileSync('/path/to/ca.pem') } // TLSが必要なら
 });
 
+// ===== ヘルスチェック =====
 app.get('/api/health', async (req, res) => {
   try {
     const [ping] = await pool.query('SELECT 1 AS ok');
@@ -45,7 +46,7 @@ app.get('/api/health', async (req, res) => {
 });
 
 
-// ===== ヘルスチェック =====
+
 app.post('/api/profile', async (req, res) => {
   try {
     const { name, age, gender } = req.body || {};
