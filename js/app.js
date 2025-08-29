@@ -22,6 +22,7 @@ document.addEventListener('DOMContentLoaded', () => {
     result.style.display = 'none';
 
     try {
+      //resにはサーバから返ってきたHTTPレスポンス
       const res = await fetch(`${API_BASE}/api/profile`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
