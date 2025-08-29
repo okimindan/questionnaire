@@ -4,8 +4,9 @@ document.addEventListener('DOMContentLoaded', () => {
   const result = document.getElementById('result');
 
   form.addEventListener('submit', (e) => {
-    e.preventDefault();
     // ページリロードや自動送信を止める（POST中止）
+    e.preventDefault();
+    
     if (!form.reportValidity()) return;
 
     const data = new FormData(form);
