@@ -14,7 +14,10 @@
   ├─ server.js         ← 追加（APIサーバ）
   └─ .env              ← 追加（DB接続情報：別サーバ）
   ```
-
+- サービス情報
+  ```
+  /etc/systemd/system/questionnaire.service
+  ```
 ## 1. Overview
 EC2でアンケートシステムを作成し、その結果を保存し分析
 
