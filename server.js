@@ -2,7 +2,11 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-app.use(express.static('public')); // public/index.html, js/app.js, css/style.css を配信
+app.use(express.static('public')); 
+// public/index.html → http://test.okimi-public.xyz:3000/index.html
+// public/js/app.js → http://test.okimi-public.xyz:3000/js/app.js
+// public/css/style.css → http://test.okimi-public.xyz:3000/css/style.css
+
 
 // ===== DB接続プール =====
 const pool = mysql.createPool({
