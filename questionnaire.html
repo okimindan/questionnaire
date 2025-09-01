@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>プロフィール入力フォーム</title>
+  <link rel="stylesheet" href="css/questionnaire.css" />
+</head>
+<body>
+  <main class="card" role="main">
+    <section class="header">
+      <h1>プロフィール入力</h1>
+      <p>お名前・年齢・性別を入力してください。</p>
+    </section>
+
+    <form id="profileForm" novalidate>
+      <!-- 名前 -->
+      <div class="field">
+        <label for="name">名前 <span class="hint">（例：山田 太郎）</span></label>
+        <input id="name" name="name" type="text" placeholder="山田 太郎" autocomplete="name" required aria-required="true" />
+      </div>
+
+      <!-- 年齢 -->
+      <div class="field">
+        <label for="age">年齢</label>
+        <input id="age" name="age" type="number" inputmode="numeric" placeholder="24" min="0" max="120" required aria-required="true" />
+        <div class="hint">0〜120の範囲で入力してください。</div>
+      </div>
+
+      <!-- 性別 -->
+      <fieldset class="field" style="border:0; padding:0; margin:0;">
+        <legend style="font-weight:600; margin-bottom:8px;">性別</legend>
+        <div class="radios" role="radiogroup">
+          <label class="radio-row"><input type="radio" name="gender" value="男性" required> 男性</label>
+          <label class="radio-row"><input type="radio" name="gender" value="女性"> 女性</label>
+          <label class="radio-row"><input type="radio" name="gender" value="その他"> その他</label>
+          <label class="radio-row"><input type="radio" name="gender" value="回答しない"> 回答しない</label>
+        </div>
+      </fieldset>
+
+      <div class="actions">
+        <button type="reset">クリア</button>
+        <button class="btn-primary" type="submit">送信</button>
+      </div>
+    </form>
+
+    <div id="result" class="result" aria-live="polite"></div>
+  </main>
+
+  <script src="js/questionnaire.js"></script>
+</body>
+</html>
