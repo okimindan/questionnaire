@@ -10,15 +10,15 @@ console.log('[ENV]', {
 const express = require('express');
 const cors = require('cors');
 const mysql = require('mysql2/promise');
+const path = require('path');
 
 const app = express();
 app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-app.use(express.static('public')); 
-// public/index.html → http://test.okimi-public.xyz:3000/index.html
-// public/js/app.js → http://test.okimi-public.xyz:3000/js/app.js
-// public/css/style.css → http://test.okimi-public.xyz:3000/css/style.css
+
+// 静的配信（index.htmlは自動配信しない）
+app.use(express.static(path.join(__dirname, 'public'), { index: false }));
 
 
 // ===== DB接続プール =====
@@ -31,6 +31,19 @@ const pool = mysql.createPool({
   waitForConnections: true,
   connectionLimit: 5,
   // ssl: { ca: require('fs').readFileSync('/path/to/ca.pem') } // TLSが必要なら
+});
+
+// ===== 初回ログイン画面 =====
+
+app.get('/', (req, res) => {
+  const filePath = path.join(__dirname, 'public', 'login.html');
+  console.log('GET / ->', filePath);
+  res.sendFile(filePath, (err) => {
+    if (err) {
+      console.error('sendFile error:', err); // ← ENOENT/EACCES など出ます
+      res.status(err.status || 500).end();
+    }
+  });
 });
 
 // ===== ヘルスチェック =====
@@ -77,5 +90,3 @@ const port = Number(process.env.PORT || 3000);
 app.listen(port, '0.0.0.0', () => {
   console.log(`API server running on http://0.0.0.0:${port}`);
 });
-
-      
