@@ -46,6 +46,18 @@ app.get('/', (req, res) => {
   });
 });
 
+
+// ===== アンケート画面 =====
+app.get('/questionnaire', (req, res) => {
+  const fp = path.join(__dirname, 'public', 'questionnaire.html');
+  console.log('GET /questionnaire ->', fp);
+  res.sendFile(fp, (err) => {
+    if (err) { console.error('sendFile error:', err); res.status(500).end(); }
+  });
+});
+
+
+
 // ===== ヘルスチェック =====
 app.get('/api/health', async (req, res) => {
   try {
