@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>新規アカウント作成</title>
+  <link rel="stylesheet" href="/css/signup.css">
+</head>
+<body>
+  <main>
+    <h1>新規アカウント作成</h1>
+    <form id="signup-form" autocomplete="on">
+      <div>
+        <label>メールアドレス
+          <input id="email" name="email" type="email" required />
+        </label>
+      </div>
+      <div>
+        <label>パスワード（8文字以上）
+          <input id="password" name="password" type="password" minlength="8" required />
+        </label>
+      </div>
+      <div>
+        <label>パスワード（確認）
+          <input id="password2" name="password2" type="password" minlength="8" required />
+        </label>
+      </div>
+      <div id="msg" role="alert" aria-live="polite"></div>
+      <button id="signupBtn" type="submit">作成</button>
+      <p style="margin-top:1rem;"><a href="http://localhost:3000/">← ログインに戻る</a></p>
+    </form>
+  </main>
+  <script src="/js/signup.js" defer></script>
+</body>
+</html>
