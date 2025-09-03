@@ -8,15 +8,16 @@
   ```
   okimi/
   ├─ public/
-  │  ├─ index.html     ← 既存（そのまま / 1行だけ追記）
-  │  ├─ js/app.js      ← 既存（fetchでAPIにPOSTするよう差し替え）
-  │  └─ css/style.css  ← 既存
+  │  ├─ index.html   
+  │  ├─ js/app.js      
+  │  └─ css/style.css  
   ├─ public-signup/
-  │  ├─ signup.html     ← 既存（そのまま / 1行だけ追記）
-  │  ├─ js/signup.js      ← 既存（fetchでAPIにPOSTするよう差し替え）
-  │  └─ css/signup.css  ← 既存
-  ├─ server.js         ← 追加（APIサーバ）
-  └─ .env              ← 追加（DB接続情報：別サーバ）
+  │  ├─ signup.html    
+  │  ├─ js/signup.js     
+  │  └─ css/signup.css  
+  ├─ server.js         public用APIサーバ
+  ├─ signup-server.js  public-signup用APIサーバ
+  └─ .env              DB接続情報：別サーバ
   ```
 - サービス情報
   ```
