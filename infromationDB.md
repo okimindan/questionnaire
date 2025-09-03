@@ -1,7 +1,6 @@
 # DB
 
 ## questionnaire
-```
 - データベースがなければ作成
 ```
 CREATE DATABASE IF NOT EXISTS questionnaire
