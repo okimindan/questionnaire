@@ -1,0 +1,111 @@
+/* 基本レイアウトと可読性 */
+*,
+*::before,
+*::after { box-sizing: border-box; }
+
+html, body { height: 100%; }
+
+body {
+  margin: 0;
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue",
+               Arial, "Noto Sans JP", "Hiragino Kaku Gothic ProN",
+               "Yu Gothic", Meiryo, sans-serif;
+  line-height: 1.6;
+  background: #f6f7f9;
+  color: #111;
+  display: grid;
+  place-items: center;
+}
+
+/* カード風のメイン */
+main {
+  width: min(440px, 92vw);
+  background: #fff;
+  padding: 24px 22px;
+  border-radius: 16px;
+  box-shadow: 0 6px 20px rgba(0,0,0,.06);
+}
+
+h1 {
+  font-size: 1.25rem;
+  margin: 0 0 1rem 0;
+}
+
+/* フォーム要素 */
+form > div {
+  margin: 0 0 12px 0;
+}
+
+label {
+  display: block;
+  font-size: .95rem;
+  font-weight: 500;
+  color: #222;
+}
+
+input[type="email"],
+input[type="password"] {
+  display: block;
+  width: 100%;
+  margin-top: 6px;
+  padding: 10px 12px;
+  border: 1px solid #d2d5da;
+  border-radius: 10px;
+  background: #fff;
+  font-size: 1rem;
+  outline: none;
+  transition: border-color .15s ease, box-shadow .15s ease;
+}
+
+input[type="email"]:focus-visible,
+input[type="password"]:focus-visible {
+  border-color: #3b82f6;
+  box-shadow: 0 0 0 3px rgba(59,130,246,.2);
+}
+
+/* エラーメッセージ領域（高さ確保でレイアウトの揺れを防止） */
+#msg[role="alert"] {
+  min-height: 1.25em;
+  margin: 8px 0 4px 0;
+  color: #d00;
+  font-weight: 600;
+}
+
+/* ボタン */
+button[type="submit"] {
+  width: 100%;
+  padding: 10px 14px;
+  border: 0;
+  border-radius: 10px;
+  background: #111827;
+  color: #fff;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: filter .15s ease, transform .02s ease;
+}
+
+button[type="submit"]:hover { filter: brightness(1.05); }
+button[type="submit"]:active { transform: translateY(1px); }
+
+a {
+  color: #2563eb;
+  text-decoration: none;
+}
+a:hover { text-decoration: underline; }
+
+/* ダークモード対応（任意） */
+@media (prefers-color-scheme: dark) {
+  body { background: #0b0d12; color: #e5e7eb; }
+  main { background: #111827; box-shadow: 0 6px 20px rgba(0,0,0,.35); }
+  label { color: #e5e7eb; }
+  input[type="email"],
+  input[type="password"] {
+    background: #0b0f17;
+    border-color: #2a3240;
+    color: #e5e7eb;
+  }
+  #msg[role="alert"] { color: #f87171; }
+  button[type="submit"] { background: #2563eb; }
+  a { color: #93c5fd; }
+}
