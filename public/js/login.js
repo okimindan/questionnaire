@@ -1,6 +1,6 @@
 // ====== 設定（必要に応じて変更） ======
 const API_ENDPOINT = "/api/login";              // 認証API（POST）
-const REDIRECT_DEFAULT = "/home.html";          // next が無い場合の遷移先
+const REDIRECT_DEFAULT = "/next.html";          // next が無い場合の遷移先(現在未作成)
 
 // ====== ユーティリティ ======
 const qs = (s, el=document) => el.querySelector(s);
@@ -35,8 +35,8 @@ form.addEventListener('submit', async (e) => {
   const params = new URLSearchParams(location.search);
   const next = params.get('next') || REDIRECT_DEFAULT;
 
-  btn.disabled = true; 
-  const original = btn.textContent; 
+  btn.disabled = true;
+  const original = btn.textContent;
   btn.textContent = 'サインイン中…';
 
   try {
@@ -58,7 +58,7 @@ form.addEventListener('submit', async (e) => {
   } catch (err) {
     msg.textContent = err.message || '不明なエラーが発生しました。';
   } finally {
-    btn.disabled = false; 
+    btn.disabled = false;
     btn.textContent = original;
   }
 });
