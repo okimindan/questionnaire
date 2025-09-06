@@ -8,14 +8,25 @@ console.log('[ENV]', {
 });
 
 const express = require('express');
+const bcrypt = require('bcrypt');
 const cors = require('cors');
 const mysql = require('mysql2/promise');
 const path = require('path');
+const session = require('express-session');
 
 const app = express();
 app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+// セッション設定（セッションを使う場合）
+app.use(session({
+  secret: 'your-secret-key',     // 適当な長いランダム文字列に置き換える
+  resave: false,
+  saveUninitialized: false,
+  cookie: { secure: false }      // HTTPSならtrueにする
+}));
+
+
 
 // 静的配信（index.htmlは自動配信しない）
 app.use(express.static(path.join(__dirname, 'public'), { index: false }));
@@ -70,8 +81,47 @@ app.get('/api/health', async (req, res) => {
   }
 });
 
+// ===== ログイン認証 =====
+app.post('/api/login', async (req, res) => {
+  const { email, password, remember } = req.body;
 
+  if (!email || !password) {
+    return res.status(400).json({ message: 'メールアドレスとパスワードを入力してください' });
+  }
 
+  try {
+    // ユーザー検索
+    const [rows] = await pool.query('SELECT * FROM users WHERE email = ?', [email]);
+    if (rows.length === 0) {
+      return res.status(401).json({ message: 'ユーザーが見つかりません' });
+    }
+
+    const user = rows[0];
+
+    // パスワード検証
+    const match = await bcrypt.compare(password, user.password_hash);
+    if (!match) {
+      return res.status(401).json({ message: 'パスワードが間違っています' });
+    }
+
+    // セッションにユーザーID保存
+    req.session.userId = user.id;
+
+    // "remember me" の場合、セッションの有効期限を長くする
+    if (remember) {
+      req.session.cookie.maxAge = 1000 * 60 * 60 * 24 * 30; // 30日
+    }
+
+    // 成功レスポンス
+    res.json({ message: 'ログイン成功', redirect: '/questionnaire.html' });
+
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ message: 'サーバーエラー' });
+  }
+});
+
+// ===== アンケート結果送信 =====
 app.post('/api/profile', async (req, res) => {
   try {
     const { name, age, gender } = req.body || {};
