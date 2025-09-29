@@ -6,7 +6,7 @@
   ```
 - ファイル情報
   ```
-  okimi/
+  questionnaire/
   ├─ public/
   │  ├─ index.html   
   │  ├─ js/app.js      
